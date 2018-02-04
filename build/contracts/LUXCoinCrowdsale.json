@@ -1,0 +1,778 @@
+{
+  "contractName": "LUXCoinCrowdsale",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "rate",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "endTime",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "cap",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "weiRaised",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "wallet",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "startTime",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "beneficiary",
+          "type": "address"
+        }
+      ],
+      "name": "buyTokens",
+      "outputs": [],
+      "payable": true,
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "hasEnded",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "token",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "name": "_startTime",
+          "type": "uint256"
+        },
+        {
+          "name": "_endTime",
+          "type": "uint256"
+        },
+        {
+          "name": "_rate",
+          "type": "uint256"
+        },
+        {
+          "name": "_cap",
+          "type": "uint256"
+        },
+        {
+          "name": "_wallet",
+          "type": "address"
+        },
+        {
+          "name": "_token",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "payable": true,
+      "stateMutability": "payable",
+      "type": "fallback"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "purchaser",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "name": "beneficiary",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "value",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "TokenPurchase",
+      "type": "event"
+    }
+  ],
+  "bytecode": "0x6060604052341561000f57600080fd5b60405160c0806105f0833981016040528080519190602001805191906020018051919060200180519190602001805191906020018051915083905086868685854285101561005c57600080fd5b8484101561006957600080fd5b6000831161007657600080fd5b600160a060020a038216151561008b57600080fd5b600160a060020a03811615156100a057600080fd5b60019490945560029290925560045560038054600160a060020a03928316600160a060020a0319918216179091556000805492909316911617815581116100e657600080fd5b6006555050505050506104f2806100fe6000396000f3006060604052600436106100985763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416632c4e722e81146100a35780633197cbb6146100c8578063355274ea146100db5780634042b66f146100ee578063521eb2731461010157806378e9792514610130578063ec8ac4d814610143578063ecb70fb714610157578063fc0c546a1461017e575b6100a133610191565b005b34156100ae57600080fd5b6100b66102d3565b60405190815260200160405180910390f35b34156100d357600080fd5b6100b66102d9565b34156100e657600080fd5b6100b66102df565b34156100f957600080fd5b6100b66102e5565b341561010c57600080fd5b6101146102eb565b604051600160a060020a03909116815260200160405180910390f35b341561013b57600080fd5b6100b66102fa565b6100a1600160a060020a0360043516610191565b341561016257600080fd5b61016a610300565b604051901515815260200160405180910390f35b341561018957600080fd5b610114610321565b600080600160a060020a03831615156101a957600080fd5b6101b1610330565b15156101bc57600080fd5b3491506101c88261035f565b6005549091506101de908363ffffffff61041316565b60055560008054600160a060020a0316906340c10f199085908490604051602001526040517c010000000000000000000000000000000000000000000000000000000063ffffffff8516028152600160a060020a0390921660048301526024820152604401602060405180830381600087803b151561025c57600080fd5b6102c65a03f1151561026d57600080fd5b505050604051805190505082600160a060020a031633600160a060020a03167f623b3804fa71d67900d064613da8f94b9617215ee90799290593e1745087ad18848460405191825260208201526040908101905180910390a36102ce61042d565b505050565b60045481565b60025481565b60065481565b60055481565b600354600160a060020a031681565b60015481565b600654600554600091901015808061031b575061031b610463565b91505090565b600054600160a060020a031681565b60008060065461034b3460055461041390919063ffffffff16565b1115905080801561031b575061031b61046b565b60006001544210158015610379575060015462093a800142105b1561039c57600454610395908390601e0263ffffffff61049b16565b905061040e565b60015462093a800142101580156103b95750600154621275000142105b156103d55760045461039590839060140263ffffffff61049b16565b600154621275000142101580156103f25750600154621baf800142105b1561040e57600454610395908390600f0263ffffffff61049b16565b919050565b60008282018381101561042257fe5b8091505b5092915050565b600354600160a060020a03163480156108fc0290604051600060405180830381858888f19350505050151561046157600080fd5b565b600254421190565b6000806000600154421015801561048457506002544211155b9150503415158180156104945750805b9250505090565b6000808315156104ae5760009150610426565b508282028284828115156104be57fe5b041461042257fe00a165627a7a723058204701ecfe9a0cbbee0029428bf9b67f7273b7253536517865235544820f150f2e0029",
+  "deployedBytecode": "0x6060604052600436106100985763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416632c4e722e81146100a35780633197cbb6146100c8578063355274ea146100db5780634042b66f146100ee578063521eb2731461010157806378e9792514610130578063ec8ac4d814610143578063ecb70fb714610157578063fc0c546a1461017e575b6100a133610191565b005b34156100ae57600080fd5b6100b66102d3565b60405190815260200160405180910390f35b34156100d357600080fd5b6100b66102d9565b34156100e657600080fd5b6100b66102df565b34156100f957600080fd5b6100b66102e5565b341561010c57600080fd5b6101146102eb565b604051600160a060020a03909116815260200160405180910390f35b341561013b57600080fd5b6100b66102fa565b6100a1600160a060020a0360043516610191565b341561016257600080fd5b61016a610300565b604051901515815260200160405180910390f35b341561018957600080fd5b610114610321565b600080600160a060020a03831615156101a957600080fd5b6101b1610330565b15156101bc57600080fd5b3491506101c88261035f565b6005549091506101de908363ffffffff61041316565b60055560008054600160a060020a0316906340c10f199085908490604051602001526040517c010000000000000000000000000000000000000000000000000000000063ffffffff8516028152600160a060020a0390921660048301526024820152604401602060405180830381600087803b151561025c57600080fd5b6102c65a03f1151561026d57600080fd5b505050604051805190505082600160a060020a031633600160a060020a03167f623b3804fa71d67900d064613da8f94b9617215ee90799290593e1745087ad18848460405191825260208201526040908101905180910390a36102ce61042d565b505050565b60045481565b60025481565b60065481565b60055481565b600354600160a060020a031681565b60015481565b600654600554600091901015808061031b575061031b610463565b91505090565b600054600160a060020a031681565b60008060065461034b3460055461041390919063ffffffff16565b1115905080801561031b575061031b61046b565b60006001544210158015610379575060015462093a800142105b1561039c57600454610395908390601e0263ffffffff61049b16565b905061040e565b60015462093a800142101580156103b95750600154621275000142105b156103d55760045461039590839060140263ffffffff61049b16565b600154621275000142101580156103f25750600154621baf800142105b1561040e57600454610395908390600f0263ffffffff61049b16565b919050565b60008282018381101561042257fe5b8091505b5092915050565b600354600160a060020a03163480156108fc0290604051600060405180830381858888f19350505050151561046157600080fd5b565b600254421190565b6000806000600154421015801561048457506002544211155b9150503415158180156104945750805b9250505090565b6000808315156104ae5760009150610426565b508282028284828115156104be57fe5b041461042257fe00a165627a7a723058204701ecfe9a0cbbee0029428bf9b67f7273b7253536517865235544820f150f2e0029",
+  "sourceMap": "248:382:3:-;;;297:233;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;457:4:3;;-1:-1:-1;477:10:3;489:8;499:5;506:7;297:233;1051:3:1;1037:17;;;1029:26;;;;;;1069:22;;;;1061:31;;;;;;1114:1;1106:9;;1098:18;;;;;;-1:-1:-1;;;;;1130:21:1;;;;1122:30;;;;;;-1:-1:-1;;;;;1166:20:1;;;;1158:29;;;;;;1194:9;:22;;;;1222:7;:18;;;;1246:4;:12;1264:6;:16;;-1:-1:-1;;;;;1264:16:1;;;-1:-1:-1;;;;;;1264:16:1;;;;;;;-1:-1:-1;1286:14:1;;;;;;;;;;;365:8:0;;357:17;;;;;;380:3;:10;-1:-1:-1;;;;;;248:382:3;;;;;;",
+  "deployedSourceMap": "248:382:3:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1393:21:1;1403:10;1393:9;:21::i;:::-;248:382:3;479:19:1;;;;;;;;;;;;;;;;;;;;;;;;;;;367:22;;;;;;;;;;;;282:18:0;;;;;;;;;;;;538:24:1;;;;;;;;;;;;433:21;;;;;;;;;;;;;;;-1:-1:-1;;;;;433:21:1;;;;;;;;;;;;;;339:24;;;;;;;;;;;;1462:444;;-1:-1:-1;;;;;1462:444:1;;;;;498:135:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;231:26:1;;;;;;;;;;;;1462:444;1594:17;;-1:-1:-1;;;;;1531:25:1;;;;1523:34;;;;;;1571:15;:13;:15::i;:::-;1563:24;;;;;;;;1614:9;1594:29;;1691:25;1706:9;1691:14;:25::i;:::-;1755:9;;1674:42;;-1:-1:-1;1755:24:1;;1769:9;1755:24;:13;:24;:::i;:::-;1743:9;:36;1786:5;;;-1:-1:-1;;;;;1786:5:1;;:10;;1797:11;;1810:6;;1786:31;;;;;;;;;;;;;;-1:-1:-1;;;;;1786:31:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1849:11;-1:-1:-1;;;;;1823:57:1;1837:10;-1:-1:-1;;;;;1823:57:1;;1862:9;1873:6;1823:57;;;;;;;;;;;;;;;;;;;;1887:14;:12;:14::i;:::-;1462:444;;;:::o;479:19::-;;;;:::o;367:22::-;;;;:::o;282:18:0:-;;;;:::o;538:24:1:-;;;;:::o;433:21::-;;;-1:-1:-1;;;;;433:21:1;;:::o;339:24::-;;;;:::o;498:135:0:-;582:3;;569:9;;539:4;;569:16;;;;;598:30;;;612:16;:14;:16::i;:::-;591:37;;498:135;;:::o;231:26:1:-;;;-1:-1:-1;;;;;231:26:1;;:::o;753:160:0:-;801:4;813:14;858:3;;830:24;844:9;830;;:13;;:24;;;;:::i;:::-;:31;;813:48;;874:9;:34;;;;;887:21;:19;:21::i;2131:405:1:-;2196:7;2222:9;;2215:3;:16;;:45;;;;;2241:9;;2253:7;2241:19;2235:3;:25;2215:45;2211:97;;;2291:4;;2277:24;;:9;;2298:2;2291:9;2277:24;:13;:24;:::i;:::-;2270:31;;;;2211:97;2324:9;;2336:7;2324:19;2317:3;:26;;:55;;;;;2353:9;;2365:7;2353:19;2347:3;:25;2317:55;2313:107;;;2403:4;;2389:24;;:9;;2410:2;2403:9;2389:24;:13;:24;:::i;2313:107::-;2436:9;;2448:7;2436:19;2429:3;:26;;:55;;;;;2465:9;;2477:7;2465:19;2459:3;:25;2429:55;2425:107;;;2515:4;;2501:24;;:9;;2522:2;2515:9;2501:24;:13;:24;:::i;2425:107::-;2131:405;;;:::o;1008:129:5:-;1066:7;1093:5;;;1111:6;;;;1104:14;;;;1131:1;1124:8;;1008:129;;;;;;:::o;2644:70:1:-;2683:6;;-1:-1:-1;;;;;2683:6:1;2699:9;2683:26;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2644:70::o;1957:78::-;2023:7;;2017:3;:13;1957:78;:::o;2770:206::-;2818:4;2830:17;2890:20;2857:9;;2850:3;:16;;:34;;;;;2877:7;;2870:3;:14;;2850:34;2830:54;-1:-1:-1;;2913:9:1;:14;;2830:54;2940:31;;;;;2956:15;2940:31;2933:38;;2770:206;;;:::o;203:173:5:-;261:7;;280:6;;276:35;;;303:1;296:8;;;;276:35;-1:-1:-1;328:5:5;;;332:1;328;:5;346;;;;;;;;:10;339:18;;",
+  "source": "pragma solidity ^0.4.17;\n\n// import './Crowdsale.sol';\nimport './LUXCoin.sol';\n// import \"zeppelin-solidity/contracts/token/ERC20/MintableToken.sol\";\nimport \"./CappedCrowdsale.sol\";\n// import \"zeppelin-solidity/contracts/crowdsale/Crowdsale.sol\";\n\ncontract LUXCoinCrowdsale is CappedCrowdsale {\n  function LUXCoinCrowdsale(uint256 _startTime, uint256 _endTime, uint256 _rate, uint256 _cap, address _wallet, MintableToken _token) public \n    CappedCrowdsale(_cap)\n    Crowdsale(_startTime, _endTime, _rate, _wallet, _token)\n  {\n  }\n  function createTokenContract() internal returns (MintableToken) {\n    return new LUXCoin();\n  }\n}",
+  "sourcePath": "/data/ContractForLUX/contracts/LUXCoinCrowdsale.sol",
+  "ast": {
+    "attributes": {
+      "absolutePath": "/data/ContractForLUX/contracts/LUXCoinCrowdsale.sol",
+      "exportedSymbols": {
+        "LUXCoinCrowdsale": [
+          401
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "^",
+            "0.4",
+            ".17"
+          ]
+        },
+        "id": 360,
+        "name": "PragmaDirective",
+        "src": "0:24:3"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 359,
+          "absolutePath": "/data/ContractForLUX/contracts/LUXCoin.sol",
+          "file": "./LUXCoin.sol",
+          "scope": 402,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 361,
+        "name": "ImportDirective",
+        "src": "55:23:3"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 68,
+          "absolutePath": "/data/ContractForLUX/contracts/CappedCrowdsale.sol",
+          "file": "./CappedCrowdsale.sol",
+          "scope": 402,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 362,
+        "name": "ImportDirective",
+        "src": "150:31:3"
+      },
+      {
+        "attributes": {
+          "contractDependencies": [
+            67,
+            343,
+            358
+          ],
+          "contractKind": "contract",
+          "documentation": null,
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            401,
+            67,
+            343
+          ],
+          "name": "LUXCoinCrowdsale",
+          "scope": 402
+        },
+        "children": [
+          {
+            "attributes": {
+              "arguments": [
+                null
+              ]
+            },
+            "children": [
+              {
+                "attributes": {
+                  "contractScope": null,
+                  "name": "CappedCrowdsale",
+                  "referencedDeclaration": 67,
+                  "type": "contract CappedCrowdsale"
+                },
+                "id": 363,
+                "name": "UserDefinedTypeName",
+                "src": "277:15:3"
+              }
+            ],
+            "id": 364,
+            "name": "InheritanceSpecifier",
+            "src": "277:15:3"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "implemented": true,
+              "isConstructor": true,
+              "name": "LUXCoinCrowdsale",
+              "payable": false,
+              "scope": 401,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_startTime",
+                      "scope": 390,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 365,
+                        "name": "ElementaryTypeName",
+                        "src": "323:7:3"
+                      }
+                    ],
+                    "id": 366,
+                    "name": "VariableDeclaration",
+                    "src": "323:18:3"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_endTime",
+                      "scope": 390,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 367,
+                        "name": "ElementaryTypeName",
+                        "src": "343:7:3"
+                      }
+                    ],
+                    "id": 368,
+                    "name": "VariableDeclaration",
+                    "src": "343:16:3"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_rate",
+                      "scope": 390,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 369,
+                        "name": "ElementaryTypeName",
+                        "src": "361:7:3"
+                      }
+                    ],
+                    "id": 370,
+                    "name": "VariableDeclaration",
+                    "src": "361:13:3"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_cap",
+                      "scope": 390,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 371,
+                        "name": "ElementaryTypeName",
+                        "src": "376:7:3"
+                      }
+                    ],
+                    "id": 372,
+                    "name": "VariableDeclaration",
+                    "src": "376:12:3"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_wallet",
+                      "scope": 390,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "type": "address"
+                        },
+                        "id": 373,
+                        "name": "ElementaryTypeName",
+                        "src": "390:7:3"
+                      }
+                    ],
+                    "id": 374,
+                    "name": "VariableDeclaration",
+                    "src": "390:15:3"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_token",
+                      "scope": 390,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "contract MintableToken",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "contractScope": null,
+                          "name": "MintableToken",
+                          "referencedDeclaration": 878,
+                          "type": "contract MintableToken"
+                        },
+                        "id": 375,
+                        "name": "UserDefinedTypeName",
+                        "src": "407:13:3"
+                      }
+                    ],
+                    "id": 376,
+                    "name": "VariableDeclaration",
+                    "src": "407:20:3"
+                  }
+                ],
+                "id": 377,
+                "name": "ParameterList",
+                "src": "322:106:3"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 388,
+                "name": "ParameterList",
+                "src": "525:0:3"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "argumentTypes": null,
+                      "overloadedDeclarations": [
+                        null
+                      ],
+                      "referencedDeclaration": 67,
+                      "type": "type(contract CappedCrowdsale)",
+                      "value": "CappedCrowdsale"
+                    },
+                    "id": 378,
+                    "name": "Identifier",
+                    "src": "441:15:3"
+                  },
+                  {
+                    "attributes": {
+                      "argumentTypes": null,
+                      "overloadedDeclarations": [
+                        null
+                      ],
+                      "referencedDeclaration": 372,
+                      "type": "uint256",
+                      "value": "_cap"
+                    },
+                    "id": 379,
+                    "name": "Identifier",
+                    "src": "457:4:3"
+                  }
+                ],
+                "id": 380,
+                "name": "ModifierInvocation",
+                "src": "441:21:3"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "argumentTypes": null,
+                      "overloadedDeclarations": [
+                        null
+                      ],
+                      "referencedDeclaration": 343,
+                      "type": "type(contract Crowdsale)",
+                      "value": "Crowdsale"
+                    },
+                    "id": 381,
+                    "name": "Identifier",
+                    "src": "467:9:3"
+                  },
+                  {
+                    "attributes": {
+                      "argumentTypes": null,
+                      "overloadedDeclarations": [
+                        null
+                      ],
+                      "referencedDeclaration": 366,
+                      "type": "uint256",
+                      "value": "_startTime"
+                    },
+                    "id": 382,
+                    "name": "Identifier",
+                    "src": "477:10:3"
+                  },
+                  {
+                    "attributes": {
+                      "argumentTypes": null,
+                      "overloadedDeclarations": [
+                        null
+                      ],
+                      "referencedDeclaration": 368,
+                      "type": "uint256",
+                      "value": "_endTime"
+                    },
+                    "id": 383,
+                    "name": "Identifier",
+                    "src": "489:8:3"
+                  },
+                  {
+                    "attributes": {
+                      "argumentTypes": null,
+                      "overloadedDeclarations": [
+                        null
+                      ],
+                      "referencedDeclaration": 370,
+                      "type": "uint256",
+                      "value": "_rate"
+                    },
+                    "id": 384,
+                    "name": "Identifier",
+                    "src": "499:5:3"
+                  },
+                  {
+                    "attributes": {
+                      "argumentTypes": null,
+                      "overloadedDeclarations": [
+                        null
+                      ],
+                      "referencedDeclaration": 374,
+                      "type": "address",
+                      "value": "_wallet"
+                    },
+                    "id": 385,
+                    "name": "Identifier",
+                    "src": "506:7:3"
+                  },
+                  {
+                    "attributes": {
+                      "argumentTypes": null,
+                      "overloadedDeclarations": [
+                        null
+                      ],
+                      "referencedDeclaration": 376,
+                      "type": "contract MintableToken",
+                      "value": "_token"
+                    },
+                    "id": 386,
+                    "name": "Identifier",
+                    "src": "515:6:3"
+                  }
+                ],
+                "id": 387,
+                "name": "ModifierInvocation",
+                "src": "467:55:3"
+              },
+              {
+                "attributes": {
+                  "statements": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 389,
+                "name": "Block",
+                "src": "525:5:3"
+              }
+            ],
+            "id": 390,
+            "name": "FunctionDefinition",
+            "src": "297:233:3"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "implemented": true,
+              "isConstructor": false,
+              "modifiers": [
+                null
+              ],
+              "name": "createTokenContract",
+              "payable": false,
+              "scope": 401,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 391,
+                "name": "ParameterList",
+                "src": "561:2:3"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 400,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "contract MintableToken",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "contractScope": null,
+                          "name": "MintableToken",
+                          "referencedDeclaration": 878,
+                          "type": "contract MintableToken"
+                        },
+                        "id": 392,
+                        "name": "UserDefinedTypeName",
+                        "src": "582:13:3"
+                      }
+                    ],
+                    "id": 393,
+                    "name": "VariableDeclaration",
+                    "src": "582:13:3"
+                  }
+                ],
+                "id": 394,
+                "name": "ParameterList",
+                "src": "581:15:3"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "functionReturnParameters": 394
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "arguments": [
+                            null
+                          ],
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "contract LUXCoin",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                null
+                              ],
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "type": "function () returns (contract LUXCoin)"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "contractScope": null,
+                                  "name": "LUXCoin",
+                                  "referencedDeclaration": 358,
+                                  "type": "contract LUXCoin"
+                                },
+                                "id": 395,
+                                "name": "UserDefinedTypeName",
+                                "src": "614:7:3"
+                              }
+                            ],
+                            "id": 396,
+                            "name": "NewExpression",
+                            "src": "610:11:3"
+                          }
+                        ],
+                        "id": 397,
+                        "name": "FunctionCall",
+                        "src": "610:13:3"
+                      }
+                    ],
+                    "id": 398,
+                    "name": "Return",
+                    "src": "603:20:3"
+                  }
+                ],
+                "id": 399,
+                "name": "Block",
+                "src": "597:31:3"
+              }
+            ],
+            "id": 400,
+            "name": "FunctionDefinition",
+            "src": "533:95:3"
+          }
+        ],
+        "id": 401,
+        "name": "ContractDefinition",
+        "src": "248:382:3"
+      }
+    ],
+    "id": 402,
+    "name": "SourceUnit",
+    "src": "0:630:3"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.18+commit.9cf6e910.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "1.0.1",
+  "updatedAt": "2018-02-04T21:29:26.064Z"
+}
