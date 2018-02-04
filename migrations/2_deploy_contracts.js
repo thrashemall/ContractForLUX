@@ -6,8 +6,8 @@ module.exports = function(deployer, network, accounts) {
   const rate = new web3.BigNumber(1000)
   // const moneyRaised = new web3.BigNumber(1000 * 1000)
   const wallet = accounts[0]
-  const goal = new web3.BigNumber(10 ** 10)
-  const cap = new web3.BigNumber(10 ** 12)
+  const goal = web3.toWei(250, 'ether');
+  const cap = web3.toWei(4000, 'ether');
   console.log(startTime, endTime, rate,cap , wallet)
   deployer.deploy(LUXCoinCrowdsale, startTime, endTime, rate, wallet);
 
