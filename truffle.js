@@ -4,7 +4,7 @@ module.exports = {
   networks: {
     development: {
       network_id: "*",
-      host: "127.0.0.1",
+      host: "localhost",
       port: 8545,   // Different than the default below
       gas: 6712388,
       gasPrice: 65000000000,
@@ -13,12 +13,12 @@ module.exports = {
   rpc: {
     host: "127.0.0.1",
     port: 8545
-  },
-  solc: {
-    optimizer: {
-      enabled: true,
-      runs: 200
-    }
   }
+  // solc: {
+  //   optimizer: {
+  //     enabled: true,
+  //     runs: 200
+  //   }
+  // }
 
 };

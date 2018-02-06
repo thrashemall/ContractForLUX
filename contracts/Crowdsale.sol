@@ -3,6 +3,14 @@ pragma solidity ^0.4.17;
 import "zeppelin-solidity/contracts/token/ERC20/MintableToken.sol";
 import "zeppelin-solidity/contracts/math/SafeMath.sol";
 
+/**
+ * @title Crowdsale
+ * @dev Crowdsale is a base contract for managing a token crowdsale.
+ * Crowdsales have a start and end timestamps, where investors can make
+ * token purchases and the crowdsale will assign them tokens based
+ * on a token per ETH rate. Funds collected are forwarded to a wallet
+ * as they arrive.
+ */
 contract Crowdsale {
   using SafeMath for uint256;
 
@@ -16,7 +24,7 @@ contract Crowdsale {
   // address where funds are collected
   address public wallet;
 
-  // base rate 1000
+  // how many token units a buyer gets per wei
   uint256 public rate;
 
   // amount of raised money in wei
@@ -32,18 +40,17 @@ contract Crowdsale {
   event TokenPurchase(address indexed purchaser, address indexed beneficiary, uint256 value, uint256 amount);
 
 
-  function Crowdsale(uint256 _startTime, uint256 _endTime, uint256 _rate, address _wallet, MintableToken _token) public {
+  function Crowdsale(uint256 _startTime, uint256 _endTime, uint256 _rate, address _wallet) public {
     require(_startTime >= now);
     require(_endTime >= _startTime);
     require(_rate > 0);
     require(_wallet != address(0));
-    require(_token != address(0));
 
+    token = createTokenContract();
     startTime = _startTime;
     endTime = _endTime;
     rate = _rate;
     wallet = _wallet;
-    token = _token;
   }
 
   // fallback function can be used to buy tokens
@@ -73,6 +80,12 @@ contract Crowdsale {
   // @return true if crowdsale event has ended
   function hasEnded() public view returns (bool) {
     return now > endTime;
+  }
+
+  // creates the token to be sold.
+  // override this method to have crowdsale of a specific mintable token.
+  function createTokenContract() internal returns (MintableToken) {
+    return new MintableToken();
   }
 
   // Override this method to have a way to add business logic to your crowdsale when buying

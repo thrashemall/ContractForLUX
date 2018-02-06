@@ -202,7 +202,7 @@
       },
       {
         "attributes": {
-          "SourceUnit": 557,
+          "SourceUnit": 443,
           "absolutePath": "zeppelin-solidity/contracts/math/SafeMath.sol",
           "file": "zeppelin-solidity/contracts/math/SafeMath.sol",
           "scope": 68,
@@ -217,7 +217,7 @@
       },
       {
         "attributes": {
-          "SourceUnit": 344,
+          "SourceUnit": 345,
           "absolutePath": "/data/ContractForLUX/contracts/Crowdsale.sol",
           "file": "./Crowdsale.sol",
           "scope": 68,
@@ -233,14 +233,14 @@
       {
         "attributes": {
           "contractDependencies": [
-            343
+            344
           ],
           "contractKind": "contract",
           "documentation": "@title CappedCrowdsale\n@dev Extension of Crowdsale with a max amount of funds raised",
           "fullyImplemented": false,
           "linearizedBaseContracts": [
             67,
-            343
+            344
           ],
           "name": "CappedCrowdsale",
           "scope": 68
@@ -257,7 +257,7 @@
                 "attributes": {
                   "contractScope": null,
                   "name": "Crowdsale",
-                  "referencedDeclaration": 343,
+                  "referencedDeclaration": 344,
                   "type": "contract Crowdsale"
                 },
                 "id": 4,
@@ -275,7 +275,7 @@
                 "attributes": {
                   "contractScope": null,
                   "name": "SafeMath",
-                  "referencedDeclaration": 556,
+                  "referencedDeclaration": 442,
                   "type": "library SafeMath"
                 },
                 "id": 6,
@@ -412,7 +412,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 1139,
+                              "referencedDeclaration": 1025,
                               "type": "function (bool) pure",
                               "value": "require"
                             },
@@ -554,7 +554,7 @@
               "payable": false,
               "scope": 67,
               "stateMutability": "view",
-              "superFunction": 238,
+              "superFunction": 229,
               "visibility": "public"
             },
             "children": [
@@ -752,7 +752,7 @@
                                   "isPure": false,
                                   "lValueRequested": false,
                                   "member_name": "hasEnded",
-                                  "referencedDeclaration": 238,
+                                  "referencedDeclaration": 229,
                                   "type": "function () view returns (bool)"
                                 },
                                 "children": [
@@ -762,7 +762,7 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
-                                      "referencedDeclaration": 1164,
+                                      "referencedDeclaration": 1050,
                                       "type": "contract super CappedCrowdsale",
                                       "value": "super"
                                     },
@@ -812,7 +812,7 @@
               "payable": false,
               "scope": 67,
               "stateMutability": "view",
-              "superFunction": 342,
+              "superFunction": 343,
               "visibility": "internal"
             },
             "children": [
@@ -938,7 +938,7 @@
                                   "isPure": false,
                                   "lValueRequested": false,
                                   "member_name": "add",
-                                  "referencedDeclaration": 555,
+                                  "referencedDeclaration": 441,
                                   "type": "function (uint256,uint256) pure returns (uint256)"
                                 },
                                 "children": [
@@ -979,7 +979,7 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
-                                      "referencedDeclaration": 1136,
+                                      "referencedDeclaration": 1022,
                                       "type": "msg",
                                       "value": "msg"
                                     },
@@ -1083,7 +1083,7 @@
                                   "isPure": false,
                                   "lValueRequested": false,
                                   "member_name": "validPurchase",
-                                  "referencedDeclaration": 342,
+                                  "referencedDeclaration": 343,
                                   "type": "function () view returns (bool)"
                                 },
                                 "children": [
@@ -1093,7 +1093,7 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
-                                      "referencedDeclaration": 1164,
+                                      "referencedDeclaration": 1050,
                                       "type": "contract super CappedCrowdsale",
                                       "value": "super"
                                     },
@@ -1147,5 +1147,5 @@
   },
   "networks": {},
   "schemaVersion": "1.0.1",
-  "updatedAt": "2018-02-04T21:29:26.060Z"
+  "updatedAt": "2018-02-06T06:58:18.178Z"
 }
